@@ -36,6 +36,7 @@ export function updateAnimals(c:AIContext,dt:number):void {
  s.grass=s.grass.filter(g=>g.food>0.01);
 }
 function wander(c:AIContext,a:Animal,dt:number):void {
- a.state='wandering';if(distance(a,a.target)<8){a.target={x:E.field.left+25+c.random()*(E.field.right-E.field.left-50),y:E.field.top+20+c.random()*(E.field.bottom-E.field.top-40)};a.state='idle';}
+ if(a.warning>0){a.warning=Math.max(0,a.warning-dt);a.state='idle';return;}
+ a.state='wandering';if(distance(a,a.target)<8){a.target={x:E.field.left+25+c.random()*(E.field.right-E.field.left-50),y:E.field.top+20+c.random()*(E.field.bottom-E.field.top-40)};a.state='idle';a.warning=.6+c.random()*1.2;return;}
  move(a,a.target,ANIMALS[a.species].speed*0.65,dt);
 }

@@ -21,7 +21,7 @@ npm run balance          # 100 deterministic campaign/profile simulations
 npm run test:e2e         # desktop, phone landscape, phone portrait
 ```
 
-Browser tests expect a running Vite server on port 5173. They use `/usr/bin/chromium` by default. Set `CHROMIUM_PATH` to your local Chrome/Chromium executable, or install Chromium via `npx playwright install chromium` and set its executable path. Screenshots are written to `screenshots/`. Browser tests use `?renderer=canvas` for reproducible headless rendering; normal play uses Phaser's automatic renderer selection (WebGL when available). Both render the same authoritative simulation.
+Browser tests default to a running Vite server on port 5173. To test the production build instead, run `npm run preview -- --port 5174`, then `PLAYWRIGHT_BASE_URL=http://127.0.0.1:5174 npm run test:e2e`. They use `/usr/bin/chromium` by default. Set `CHROMIUM_PATH` to your local Chrome/Chromium executable, or install Chromium via `npx playwright install chromium` and set its executable path. Screenshots are written to `screenshots/`. Browser tests use `?renderer=canvas` for reproducible headless rendering; normal play uses Phaser's automatic renderer selection (WebGL when available). Both render the same authoritative simulation.
 
 ## Deployment
 
@@ -45,3 +45,11 @@ For another static host, upload `dist/`. There is no backend and no rewrite conf
 Progress saves locally every five seconds, on pause/navigation and when the page is hidden. Export/import JSON from Settings to move between devices or keep a backup. A hidden tab pauses the simulation; returning opens the pause menu. There is no offline income or catch-up farming. Restarting a day discards only that day's unfinished state.
 
 See [GAME_DESIGN.md](GAME_DESIGN.md), [BALANCE.md](BALANCE.md), and [ASSET_GUIDE.md](ASSET_GUIDE.md). See [TESTING.md](TESTING.md) for actual verification results and scope.
+
+## Screenshots
+
+![First day on the farm](screenshots/farm-desktop.png)
+
+![A busy advanced farm](screenshots/living-farm.png)
+
+![Campaign map](screenshots/map-desktop.png)

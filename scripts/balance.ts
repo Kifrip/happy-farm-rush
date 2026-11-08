@@ -1,6 +1,7 @@
 import {writeFileSync} from 'node:fs';
 import {GameSimulation} from '../src/game/engine/GameSimulation';
 import {LEVELS} from '../src/game/config/levels';
+import {updateBears} from '../src/game/engine/BearSystem';
 import {ANIMALS} from '../src/game/config/animals';
 import {BUILDINGS} from '../src/game/config/buildings';
 import {PRODUCTS} from '../src/game/config/products';
@@ -14,7 +15,7 @@ export function simulate(levelIndex:number,profile:Profile){
  const interval=profile==='beginner'?4:profile==='efficient'?.4:profile==='storage-shortage'?2:1.3;
  for(let step=0;step<18000&&!g.s.complete;step++){
   const s=g.s;if(s.time+1e-8>=nextAction){nextAction+=interval;
-   if(profile==='bear-loss'&&s.bears.length&&!removed){const a=s.animals.find(a=>ANIMALS[a.species].product);if(a){const b=s.bears.find(b=>!b.caged);if(b){b.x=a.x;b.y=a.y;b.warning=0;b.stun=0;b.attack=0;const dog=s.animals.find(v=>v.species==='dog');if(dog)dog.bark=10;g.step();removed=s.lost>0;}}}
+   if(profile==='bear-loss'&&s.bears.length&&!removed){const a=s.animals.find(a=>ANIMALS[a.species].product);if(a){const b=s.bears.find(b=>!b.caged);if(b){b.x=a.x;b.y=a.y;b.warning=0;b.stun=0;b.attack=0;const dog=s.animals.find(v=>v.species==='dog');if(dog)dog.bark=10;updateBears(s,.05,g.emit);removed=s.lost>0;}}}
    for(const b of [...s.bears]){if(!b.caged){for(let i=0;i<3;i++)g.capture(b.id);}if(b.caged)g.capture(b.id);}
    for(const p of [...s.drops].sort((a,b)=>PRODUCTS[b.kind].price-PRODUCTS[a.kind].price))if(!g.collect(p.id))refused++;
    // Work backward through each chain, retaining raw resources until downstream goals are met.

@@ -13,7 +13,7 @@ export class GameSimulation {
   if(saved){this.s=structuredClone(saved);return;}
   this.s={level:level.id,seed:8137+level.id*93,nextId:1,time:0,coins:level.coins,water:level.water,refill:0,animals:[],grass:[],drops:[],bears:[],machines:level.buildings.map(kind=>({kind,level:1,remaining:0,duration:0,batch:0})),inventory:{...emptyInventory(),...level.inventory},collected:emptyInventory(),produced:emptyInventory(),delivered:emptyInventory(),revenue:0,truck:{remaining:0,duration:0,cargo:emptyInventory(),value:0},spawned:0,complete:false,lost:0,upgrades:{...upgrades,...level.activeUpgrades}};
   for(const [species,count] of Object.entries(level.animals))for(let i=0;i<(count??0);i++)this.addAnimal(species as Species);
-  for(let i=0;i<4;i++)this.s.grass.push({id:this.id(),x:330+i*105,y:280+(i%2)*90,food:E.grassFood,age:3});
+  for(let i=0;i<(level.id===1?1:4);i++)this.s.grass.push({id:this.id(),x:330+i*105,y:280+(i%2)*90,food:E.grassFood,age:3});
  }
  static restore(state:FarmState):GameSimulation{return new GameSimulation(LEVELS[state.level-1],state.upgrades,state);}
  id=():number=>this.s.nextId++;

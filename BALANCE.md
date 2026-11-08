@@ -71,6 +71,18 @@ Policies:
 
 These policies perform multiple decisions at a reaction point and know objective dependencies. They are economic solvability experiments, not claims of measured human play time. They do not exhaust all decisions or prove every medal is achievable with every upgrade selection.
 
-The initial campaign took only 27–34 minutes in these experiments. Producer intervals, workshop times, animal mixes and advanced orders were revised. Current no-upgrade runs are roughly 44–47 minutes across the policies, before menus and upgrade decisions. All 100 scenarios complete after the storage policy was corrected to free raw reserves when full. See the JSON for exact per-level times, losses, refused collections, farm-aid usage and goal progress.
+The initial campaign took only 27–34 minutes in these experiments. Producer intervals, workshop times, animal mixes and advanced orders were revised. Current no-upgrade runs are roughly 45–48 minutes across the policies, before menus and upgrade decisions. All 100 scenarios complete after the storage policy was corrected to free raw reserves when full. See the JSON for exact per-level times, losses, refused collections, farm-aid usage and goal progress.
 
 Days 1–6 target about 1–3 minutes, days 7–16 about 2–4 minutes, and days 17–20 about 3–6 minutes; individual learning days can be shorter. The twenty configurations have distinct starting flocks, workshops, goals and arrival schedules. More demanding gold optimization and human pacing still benefit from playtesting.
+
+## Final recorded campaign runs
+
+| Policy | Completed days | Total simulation time | Animals lost | Farm-aid uses |
+|---|---:|---:|---:|---:|
+| beginner | 20/20 | 47.62 min | 0 | 0 |
+| average | 20/20 | 45.80 min | 0 | 0 |
+| efficient | 20/20 | 45.15 min | 0 | 0 |
+| storage-shortage | 20/20 | 46.08 min | 0 | 0 |
+| bear-loss | 20/20 | 46.07 min | 17 | 0 |
+
+The bear-loss policy produced 17 genuine attack losses across the 17 days with scheduled bears and still completed every day. It deliberately places a warned bear at a producer for one attack before normal defense resumes; it does not inject free replacement animals or money. No farm aid was needed in any of these final policies.
