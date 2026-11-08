@@ -10,7 +10,7 @@ test('three workshop chains, cage collection, selected cargo and exactly-once pa
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
  // Arrange a valid interrupted final day; isolate production without skipping its timers or actions.
  const fixture=newProgress();fixture.unlocked=20;const farm=new GameSimulation(LEVELS[19]);farm.s.animals=[];farm.s.inventory.egg=1;farm.s.inventory.wool=1;farm.s.inventory.milk=1;fixture.active=farm.s;
- await page.addInitScript(value=>localStorage.setItem('happy-farm-rush-v1',value),JSON.stringify(fixture));await page.clock.install();await page.goto('/?renderer=canvas');await page.getByRole('button',{name:'Continue your day',exact:false}).click();await page.getByRole('button',{name:'Resume your day',exact:false}).click();await expect(page.locator('canvas[data-ready="true"]')).toBeVisible();
+ await page.addInitScript(value=>localStorage.setItem('happy-farm-rush-v1',value),JSON.stringify(fixture));await page.clock.install();await page.goto('/?renderer=canvas&lang=en');await page.getByRole('button',{name:'Continue your day',exact:false}).click();await page.getByRole('button',{name:'Resume your day',exact:false}).click();await expect(page.locator('canvas[data-ready="true"]')).toBeVisible();
  await click(page,132,190);await click(page,125,325);await click(page,135,455);await page.clock.runFor(24000);
  let s=await save(page);expect(s.inventory.egg).toBe(0);expect(s.inventory.wool).toBe(0);expect(s.inventory.milk).toBe(0);expect(s.produced.powder).toBe(1);expect(s.produced.thread).toBe(1);expect(s.produced.butter).toBe(1);
  for(const d of s.drops)await click(page,d.x,d.y);

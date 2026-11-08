@@ -5,8 +5,8 @@ import {UPGRADES} from '../config/upgrades';
 import {medalFor} from '../engine/ObjectiveSystem';
 import {validateSave} from './SaveValidation';
 export const SAVE_KEY='happy-farm-rush-v1';
-export const newProgress=():Progress=>({version:1,unlocked:1,stars:0,spent:0,totalEarned:0,best:{},upgrades:emptyUpgrades(),settings:{sound:0.45,music:0.12,muted:false,effects:true,reducedMotion:typeof matchMedia!=='undefined'&&matchMedia('(prefers-reduced-motion: reduce)').matches},achievements:[],active:null});
-export function parseSave(raw:string):Progress {if(raw.length>2000000)throw new Error('Save file is too large.');const v:unknown=JSON.parse(raw);if(!validateSave(v))throw new Error('This is not a valid Happy Farm Rush v1 save.');return v;}
+export const newProgress=():Progress=>({version:1,unlocked:1,stars:0,spent:0,totalEarned:0,best:{},upgrades:emptyUpgrades(),settings:{language:'ru',sound:0.45,music:0.12,muted:false,effects:true,reducedMotion:typeof matchMedia!=='undefined'&&matchMedia('(prefers-reduced-motion: reduce)').matches},achievements:[],active:null});
+export function parseSave(raw:string):Progress {if(raw.length>2000000)throw new Error('Save file is too large.');const v:unknown=JSON.parse(raw);if(v&&typeof v==='object'&&'settings' in v&&v.settings&&typeof v.settings==='object'&&!('language' in v.settings))Object.assign(v.settings,{language:'ru'});if(!validateSave(v))throw new Error('This is not a valid Happy Farm Rush v1 save.');return v;}
 export class SaveManager {
  progress:Progress;error='';
  constructor(private storage:Pick<Storage,'getItem'|'setItem'|'removeItem'>|null=typeof localStorage==='undefined'?null:localStorage){this.progress=newProgress();try{const raw=storage?.getItem(SAVE_KEY);if(raw)this.progress=parseSave(raw);}catch{this.error='Your save could not be loaded. Export it before resetting; a new game is ready.';}}

@@ -34,3 +34,7 @@ Artwork and synthesis definitions were created for this repository; no assets we
 ## Extending assets
 
 Keep feet and shadows near the same baseline so depth sorting remains accurate. Keep gameplay silhouettes inside the source bounds. New animals need four walk frames plus recognizable idle/eating/danger reactions. New products need a distinct silhouette at a 30-pixel display size. Place active pickup points toward the pasture. Any externally supplied replacement must include a documented license allowing distribution in the browser bundle.
+
+## Adaptive farm presentation
+
+The immersive phone layout resizes the presentation canvas to its allocated viewport. Entity positions are projected vertically from the unchanged 1000 × 650 simulation world and taps use the inverse projection. The ground stretches to fill the available space, while individual animals, products and buildings retain their proportions. Trees now render independently from the ground so tall portrait viewports do not stretch the tree illustrations. Font sizes account for the canvas's displayed width to keep Cyrillic world labels readable.

@@ -4,7 +4,7 @@ const state=(page:Page)=>page.evaluate(()=>JSON.parse(localStorage.getItem('happ
 async function worldClick(page:Page,x:number,y:number){await page.locator('canvas').scrollIntoViewIfNeeded();const box=await page.locator('canvas').boundingBox();if(!box)throw new Error('Farm canvas is unavailable');await page.mouse.click(box.x+x/1000*box.width,box.y+y/650*box.height);}
 async function startDay(page:Page){await page.getByRole('button',{name:'Let’s get growing',exact:false}).first().click();await expect(page.getByRole('dialog')).toBeVisible();await page.getByRole('button',{name:'Let’s get growing',exact:false}).click();await expect(page.locator('canvas[data-ready="true"]')).toBeVisible();}
 test('new campaign, real harvest, medal, upgrades, next day and save restore',async({page},testInfo)=>{
- const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await page.clock.install();await page.goto('/?renderer=canvas');await page.screenshot({path:`screenshots/map-${testInfo.project.name}.png`,fullPage:true});
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await page.clock.install();await page.goto('/?renderer=canvas&lang=en');await page.screenshot({path:`screenshots/map-${testInfo.project.name}.png`,fullPage:true});
  await startDay(page);const before=(await state(page))!;await worldClick(page,500,440);await page.clock.runFor(6000);expect((await state(page))!.water).toBe(before.water-1);expect((await state(page))!.grass.length).toBeGreaterThan(0);
  await page.screenshot({path:`screenshots/farm-${testInfo.project.name}.png`,fullPage:true});
  for(let i=0;i<30;i++){

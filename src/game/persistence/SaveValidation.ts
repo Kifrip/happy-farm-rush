@@ -11,7 +11,7 @@ const inventory=(v:unknown)=>obj(v)&&Object.keys(PRODUCTS).every(k=>int(v[k],100
 const upgrades=(v:unknown)=>obj(v)&&Object.keys(UPGRADES).every(k=>int(v[k],3));
 export function validateSave(value:unknown):value is Progress {
  if(!obj(value)||value.version!==1||!int(value.unlocked,20)||value.unlocked<1||!int(value.stars,1000)||!int(value.spent,1000)||!int(value.totalEarned,1000)||value.stars+value.spent!==value.totalEarned||!upgrades(value.upgrades)||!obj(value.settings)||!obj(value.best)||!Array.isArray(value.achievements)||!value.achievements.every(a=>typeof a==='string'&&a.length<100))return false;
- const settings=value.settings;if(!num(settings.sound,1)||!num(settings.music,1)||typeof settings.muted!=='boolean'||typeof settings.effects!=='boolean'||typeof settings.reducedMotion!=='boolean')return false;
+ const settings=value.settings;if(settings.language!=='ru'&&settings.language!=='en')return false;if(!num(settings.sound,1)||!num(settings.music,1)||typeof settings.muted!=='boolean'||typeof settings.effects!=='boolean'||typeof settings.reducedMotion!=='boolean')return false;
  if(!Object.entries(value.best).every(([k,b])=>int(Number(k),20)&&Number(k)>=1&&obj(b)&&num(b.time)&&int(b.medal,3)&&b.medal>=1))return false;
  if(value.active===null)return true;
  const s=value.active;if(!obj(s)||!int(s.level,20)||s.level<1||s.level>value.unlocked||!int(s.seed,4294967295)||!int(s.nextId)||!num(s.time)||!num(s.coins)||!num(s.water,27)||!num(s.refill,4)||!num(s.revenue)||!int(s.spawned,1000)||!int(s.lost)||typeof s.complete!=='boolean'||!upgrades(s.upgrades))return false;
