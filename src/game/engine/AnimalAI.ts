@@ -22,7 +22,7 @@ export function updateAnimals(c:AIContext,dt:number):void {
   if(threat){a.state='fleeing';a.target={x:Math.min(E.field.right,Math.max(E.field.left,a.x+(a.x-threat.x)*2)),y:Math.min(E.field.bottom,Math.max(E.field.top,a.y+(a.y-threat.y)*2))};move(a,a.target,cfg.speed*1.35,dt);}
   else {
    const food=a.hunger>17?s.grass.filter(g=>g.food>0).sort((g,h)=>distance(a,g)-distance(a,h))[0]:undefined;
-   if(food){a.target={x:food.x,y:food.y};if(distance(a,food)>23){a.state='seeking';move(a,food,cfg.speed,dt);}else{a.state='eating';const eaten=Math.min(food.food,E.eatRate*dt);food.food-=eaten;a.hunger=Math.max(0,a.hunger-eaten*E.feedRate/E.eatRate);}}
+   if(food){a.target={x:food.x,y:food.y};if(distance(a,food)>Math.max(23,cfg.radius+6)){a.state='seeking';move(a,food,cfg.speed,dt);}else{a.state='eating';const eaten=Math.min(food.food,E.eatRate*dt);food.food-=eaten;a.hunger=Math.max(0,a.hunger-eaten*E.feedRate/E.eatRate);}}
    else wander(c,a,dt);
    if(a.hunger<E.hungerStop){a.cooldown-=dt;if(a.cooldown<=0&&cfg.product){a.cooldown=cfg.interval;a.state='producing';s.produced[cfg.product]++;c.drop(cfg.product,{x:a.x+18,y:a.y+14});c.emit({kind:'product',text:PRODUCTS[cfg.product].name,x:a.x,y:a.y});}}
   }
@@ -30,7 +30,7 @@ export function updateAnimals(c:AIContext,dt:number):void {
  }
  // Soft separation, bounded and deterministic; never changes targets or snaps to a grid.
  for(let i=0;i<s.animals.length;i++)for(let j=i+1;j<s.animals.length;j++){
-  const a=s.animals[i],b=s.animals[j],d=distance(a,b);if(d<29&&d>0.01){const f=(29-d)*dt;const dx=(a.x-b.x)/d*f,dy=(a.y-b.y)/d*f;a.x+=dx;a.y+=dy;b.x-=dx;b.y-=dy;}
+  const a=s.animals[i],b=s.animals[j],d=distance(a,b),space=ANIMALS[a.species].radius+ANIMALS[b.species].radius;if(d<space&&d>0.01){const f=(space-d)*dt*3;const dx=(a.x-b.x)/d*f,dy=(a.y-b.y)/d*f;a.x+=dx;a.y+=dy;b.x-=dx;b.y-=dy;}
  }
  for(const a of s.animals){a.x=Math.max(E.field.left,Math.min(E.field.right,a.x));a.y=Math.max(E.field.top,Math.min(E.field.bottom,a.y));}
  s.grass=s.grass.filter(g=>g.food>0.01);

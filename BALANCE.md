@@ -80,9 +80,9 @@ Days 1–6 target about 1–3 minutes, days 7–16 about 2–4 minutes, and days
 | Policy | Completed days | Total simulation time | Animals lost | Farm-aid uses |
 |---|---:|---:|---:|---:|
 | beginner | 20/20 | 47.62 min | 0 | 0 |
-| average | 20/20 | 45.80 min | 0 | 0 |
+| average | 20/20 | 46.07 min | 0 | 0 |
 | efficient | 20/20 | 45.15 min | 0 | 0 |
-| storage-shortage | 20/20 | 46.08 min | 0 | 0 |
+| storage-shortage | 20/20 | 46.58 min | 0 | 0 |
 | bear-loss | 20/20 | 46.07 min | 17 | 0 |
 
 The bear-loss policy produced 17 genuine attack losses across the 17 days with scheduled bears and still completed every day. It deliberately places a warned bear at a producer for one attack before normal defense resumes; it does not inject free replacement animals or money. No farm aid was needed in any of these final policies.

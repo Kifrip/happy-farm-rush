@@ -113,7 +113,7 @@
     "complete": true,
     "time": 123,
     "medal": 3,
-    "coins": 752,
+    "coins": 764,
     "lost": 0,
     "recoveries": 0,
     "refused": 0,
@@ -161,11 +161,11 @@
     "complete": true,
     "time": 135,
     "medal": 3,
-    "coins": 1692,
+    "coins": 1680,
     "lost": 0,
     "recoveries": 0,
     "refused": 0,
-    "goals": "deliver:milk 6/5; produce:cloth 2/2; balance:coins 1692/450"
+    "goals": "deliver:milk 6/5; produce:cloth 2/2; balance:coins 1680/450"
   },
   {
     "level": 15,
@@ -200,32 +200,32 @@
     "coins": 3793,
     "lost": 0,
     "recoveries": 0,
-    "refused": 35,
+    "refused": 39,
     "goals": "produce:cake 6/6; produce:cloth 6/6; produce:cheese 6/6"
   },
   {
     "level": 18,
     "profile": "beginner",
     "complete": true,
-    "time": 215,
+    "time": 231,
     "medal": 3,
-    "coins": 4211,
+    "coins": 4786,
     "lost": 0,
     "recoveries": 0,
-    "refused": 28,
-    "goals": "deliver:cake 6/6; deliver:cloth 5/5; deliver:cheese 5/5"
+    "refused": 33,
+    "goals": "deliver:cake 7/6; deliver:cloth 6/5; deliver:cheese 5/5"
   },
   {
     "level": 19,
     "profile": "beginner",
     "complete": true,
-    "time": 247,
+    "time": 231,
     "medal": 3,
-    "coins": 4190,
+    "coins": 3960,
     "lost": 0,
     "recoveries": 0,
-    "refused": 124,
-    "goals": "revenue:coins 4024/3600; produce:cheese 6/5; produce:cloth 7/5; stock:cake 3/3"
+    "refused": 97,
+    "goals": "revenue:coins 3782/3600; produce:cheese 6/5; produce:cloth 7/5; stock:cake 4/3"
   },
   {
     "level": 20,
@@ -233,11 +233,11 @@
     "complete": true,
     "time": 279,
     "medal": 3,
-    "coins": 6103,
+    "coins": 6047,
     "lost": 0,
     "recoveries": 0,
-    "refused": 64,
-    "goals": "deliver:cake 9/8; deliver:cloth 7/7; deliver:cheese 7/7; revenue:coins 5839/5000; collect:bear 4/3"
+    "refused": 71,
+    "goals": "deliver:cake 9/8; deliver:cloth 7/7; deliver:cheese 7/7; revenue:coins 5795/5000; collect:bear 4/3"
   },
   {
     "level": 1,
@@ -425,7 +425,7 @@
     "complete": true,
     "time": 107,
     "medal": 3,
-    "coins": 1098,
+    "coins": 1110,
     "lost": 0,
     "recoveries": 0,
     "refused": 0,
@@ -437,10 +437,10 @@
     "complete": true,
     "time": 211,
     "medal": 3,
-    "coins": 3415,
+    "coins": 3453,
     "lost": 0,
     "recoveries": 0,
-    "refused": 88,
+    "refused": 54,
     "goals": "produce:cake 6/6; produce:cloth 6/6; produce:cheese 6/6"
   },
   {
@@ -461,23 +461,23 @@
     "complete": true,
     "time": 227,
     "medal": 3,
-    "coins": 4222,
+    "coins": 3998,
     "lost": 0,
     "recoveries": 0,
-    "refused": 125,
-    "goals": "revenue:coins 4044/3600; produce:cheese 6/5; produce:cloth 7/5; stock:cake 3/3"
+    "refused": 170,
+    "goals": "revenue:coins 3820/3600; produce:cheese 6/5; produce:cloth 7/5; stock:cake 3/3"
   },
   {
     "level": 20,
     "profile": "average",
     "complete": true,
-    "time": 258,
+    "time": 274,
     "medal": 3,
-    "coins": 5575,
+    "coins": 5825,
     "lost": 0,
     "recoveries": 0,
-    "refused": 117,
-    "goals": "deliver:cake 8/8; deliver:cloth 7/7; deliver:cheese 7/7; revenue:coins 5311/5000; collect:bear 4/3"
+    "refused": 251,
+    "goals": "deliver:cake 9/8; deliver:cloth 7/7; deliver:cheese 7/7; revenue:coins 5561/5000; collect:bear 4/3"
   },
   {
     "level": 1,
@@ -641,11 +641,11 @@
     "complete": true,
     "time": 129,
     "medal": 3,
-    "coins": 1692,
+    "coins": 1680,
     "lost": 0,
     "recoveries": 0,
     "refused": 0,
-    "goals": "deliver:milk 6/5; produce:cloth 2/2; balance:coins 1692/450"
+    "goals": "deliver:milk 6/5; produce:cloth 2/2; balance:coins 1680/450"
   },
   {
     "level": 15,
@@ -689,7 +689,7 @@
     "complete": true,
     "time": 205,
     "medal": 3,
-    "coins": 4217,
+    "coins": 4205,
     "lost": 0,
     "recoveries": 0,
     "refused": 32,
@@ -701,11 +701,11 @@
     "complete": true,
     "time": 221,
     "medal": 3,
-    "coins": 4222,
+    "coins": 4094,
     "lost": 0,
     "recoveries": 0,
-    "refused": 186,
-    "goals": "revenue:coins 4044/3600; produce:cheese 6/5; produce:cloth 6/5; stock:cake 3/3"
+    "refused": 333,
+    "goals": "revenue:coins 3916/3600; produce:cheese 6/5; produce:cloth 7/5; stock:cake 4/3"
   },
   {
     "level": 20,
@@ -713,11 +713,11 @@
     "complete": true,
     "time": 267,
     "medal": 3,
-    "coins": 6014,
+    "coins": 5857,
     "lost": 0,
     "recoveries": 0,
-    "refused": 372,
-    "goals": "deliver:cake 9/8; deliver:cloth 8/7; deliver:cheese 7/7; revenue:coins 5750/5000; collect:bear 4/3"
+    "refused": 518,
+    "goals": "deliver:cake 9/8; deliver:cloth 7/7; deliver:cheese 7/7; revenue:coins 5593/5000; collect:bear 4/3"
   },
   {
     "level": 1,
@@ -881,11 +881,11 @@
     "complete": true,
     "time": 129,
     "medal": 3,
-    "coins": 1710,
+    "coins": 1722,
     "lost": 0,
     "recoveries": 0,
     "refused": 0,
-    "goals": "deliver:milk 6/5; produce:cloth 2/2; balance:coins 1710/450"
+    "goals": "deliver:milk 6/5; produce:cloth 2/2; balance:coins 1722/450"
   },
   {
     "level": 15,
@@ -929,35 +929,35 @@
     "complete": true,
     "time": 209,
     "medal": 3,
-    "coins": 4143,
+    "coins": 4053,
     "lost": 0,
     "recoveries": 0,
-    "refused": 106,
+    "refused": 151,
     "goals": "deliver:cake 6/6; deliver:cloth 5/5; deliver:cheese 5/5"
   },
   {
     "level": 19,
     "profile": "storage-shortage",
     "complete": true,
-    "time": 225,
+    "time": 223,
     "medal": 3,
-    "coins": 4137,
+    "coins": 4136,
     "lost": 0,
     "recoveries": 0,
-    "refused": 149,
-    "goals": "revenue:coins 3959/3600; produce:cheese 6/5; produce:cloth 6/5; stock:cake 3/3"
+    "refused": 79,
+    "goals": "revenue:coins 3958/3600; produce:cheese 6/5; produce:cloth 6/5; stock:cake 4/3"
   },
   {
     "level": 20,
     "profile": "storage-shortage",
     "complete": true,
-    "time": 289,
+    "time": 321,
     "medal": 3,
-    "coins": 5915,
+    "coins": 7009,
     "lost": 0,
     "recoveries": 0,
-    "refused": 436,
-    "goals": "deliver:cake 9/8; deliver:cloth 7/7; deliver:cheese 7/7; revenue:coins 5663/5000; collect:bear 5/3"
+    "refused": 600,
+    "goals": "deliver:cake 10/8; deliver:cloth 9/7; deliver:cheese 8/7; revenue:coins 6769/5000; collect:bear 5/3"
   },
   {
     "level": 1,
@@ -1157,7 +1157,7 @@
     "complete": true,
     "time": 211,
     "medal": 3,
-    "coins": 3517,
+    "coins": 3505,
     "lost": 1,
     "recoveries": 0,
     "refused": 23,
@@ -1169,7 +1169,7 @@
     "complete": true,
     "time": 210,
     "medal": 3,
-    "coins": 4109,
+    "coins": 4097,
     "lost": 1,
     "recoveries": 0,
     "refused": 32,
@@ -1181,11 +1181,11 @@
     "complete": true,
     "time": 227,
     "medal": 3,
-    "coins": 3916,
+    "coins": 4150,
     "lost": 1,
     "recoveries": 0,
-    "refused": 136,
-    "goals": "revenue:coins 3726/3600; produce:cheese 6/5; produce:cloth 7/5; stock:cake 4/3"
+    "refused": 83,
+    "goals": "revenue:coins 3972/3600; produce:cheese 6/5; produce:cloth 7/5; stock:cake 3/3"
   },
   {
     "level": 20,
@@ -1193,10 +1193,10 @@
     "complete": true,
     "time": 274,
     "medal": 3,
-    "coins": 5751,
+    "coins": 5858,
     "lost": 1,
     "recoveries": 0,
-    "refused": 188,
-    "goals": "deliver:cake 9/8; deliver:cloth 7/7; deliver:cheese 7/7; revenue:coins 5475/5000; collect:bear 4/3"
+    "refused": 138,
+    "goals": "deliver:cake 9/8; deliver:cloth 8/7; deliver:cheese 7/7; revenue:coins 5594/5000; collect:bear 4/3"
   }
 ]
