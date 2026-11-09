@@ -65,3 +65,7 @@ Use the corner-expand button to request **native fullscreen**, which hides brows
 ![Russian mobile farm, portrait](screenshots/ru-immersive-mobile-portrait.png)
 
 ![Controls inside the farm scene](screenshots/floating-controls-mobile-portrait.png)
+
+## Background music
+
+The owner-supplied **Breakfast in the Orchard** MP3 plays quietly on repeat while the farm is active. Settings → Background music controls its volume independently of sound effects. Playback begins after user interaction, pauses in dialogs or a hidden tab, and resumes from its existing position. The original supplied recording is preserved; native repeat does not guarantee a musically seamless boundary.

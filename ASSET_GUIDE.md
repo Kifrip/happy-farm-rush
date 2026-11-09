@@ -25,11 +25,11 @@ The loader creates base64 SVG data URLs; no runtime fetches to asset services ar
 
 ## Audio
 
-`src/ui/Audio.ts` synthesizes short pitch envelopes with Web Audio. Planting, refills, production, collection, workshop starts, truck trips, bear warnings, cage hits, purchases, errors and results have distinct pitches. An optional low-volume ambient tone has a separate slider. The audio context is created/resumed only after interaction; there are no samples, recordings or licensed music tracks.
+`src/ui/Audio.ts` synthesizes short pitch envelopes with Web Audio. Planting, refills, production, collection, workshop starts, truck trips, bear warnings, cage hits, purchases, errors and results have distinct pitches. Background music uses the user-supplied `public/audio/breakfast-in-the-orchard.mp3` (Breakfast in the Orchard), with native looping and a separate volume slider. It pauses with the farm or hidden tab and resumes at the same position. The audio context is created/resumed only after interaction; sound effects use no samples. The music recording was supplied by the repository owner for inclusion in this game.
 
 ## Ownership and licensing
 
-Artwork and synthesis definitions were created for this repository; no assets were extracted from Farm Frenzy, Steam, MobyGames or Shockwave. Repository-authored code and artwork are covered by the included MIT license. Phaser and other dependencies retain their respective licenses; review their distributed notices when redistributing. Reference games and titles belong to their owners; inspiration does not imply endorsement.
+Artwork and synthesis definitions were created for this repository; no assets were extracted from Farm Frenzy, Steam, MobyGames or Shockwave. The supplied music is not included in the MIT grant for repository-authored artwork; no independent ownership or license claim is made for it. Repository-authored code and artwork are covered by the included MIT license. Phaser and other dependencies retain their respective licenses; review their distributed notices when redistributing. Reference games and titles belong to their owners; inspiration does not imply endorsement.
 
 ## Extending assets
 

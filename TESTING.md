@@ -37,7 +37,7 @@ The GitHub Actions Pages workflow runs locked dependency installation, the compl
 
 - Physical Android hardware, Safari and Firefox were not tested; headless Chromium viewports cannot establish performance on those devices.
 - Campaign duration is a deterministic economic simulation estimate. Human playtesting is still needed to judge difficulty, discoverability and medal pacing. Policies know all stock and objective dependencies, even with delayed reactions.
-- Artwork uses original SVG walk frames and state transforms rather than large hand-painted animation sheets. Ambient audio is a quiet synthesized tone rather than a composed soundtrack. These are deliberate lightweight presentation choices.
+- Artwork uses original SVG walk frames and state transforms rather than large hand-painted animation sheets. Background music is the user-supplied Breakfast in the Orchard MP3, replacing the synthesized ambient tone. These are deliberate lightweight presentation choices.
 - Sixty maximum campaign stars buy selected upgrades, not the entire shop. Upgraded replays can finish faster than the initial 45–60-minute campaign target.
 
 ## Russian and immersive mobile update
@@ -59,3 +59,7 @@ The phone HUD uses floating cards at the top left, action controls at the right,
 Four geometry tests cover unobstructed roadside placement, moving a warehouse above the dock, proportional fitting on short portrait windows, and ignoring controls outside the sprite’s horizontal span. Three additional browser cases measure Phaser’s actual full sprite and label bounds against visible, clipped HTML cards. They cover every workshop while processing and nine phone/tablet aspect ratios: 384 × 765, 390 × 700, 320 × 568, 430 × 740, 480 × 568, 600 × 600, 740 × 320, 844 × 390 and 1024 × 768. Portrait action buttons stay above the first workshop roof; landscape goals sit between the egg mill and well. Mobile processing captions retain time and batch size in a compact form.
 
 Screenshots: `screenshots/uncovered-buildings-*.png` and the user-screenshot aspect ratio at `screenshots/clear-level5-384.png`. These are emulated Chromium viewports, not physical-device measurements.
+
+## Supplied background music update
+
+After replacing the oscillator with the owner-supplied MP3, `npm test` passed all 147 tests and `npm run build` succeeded. Three targeted Chromium cases (`music.spec.ts`) passed for desktop and both phone orientations: no audio element before interaction, actual MP3 decoding and advancing playback time, loop enabled, saved default music volume, pause/resume at the current position, hidden-tab pause and no runtime errors. The previous 15 browser cases were not rerun for this audio-only change. The supplied recording is preserved; these checks do not establish a musically seamless loop or physical-device sound quality.
