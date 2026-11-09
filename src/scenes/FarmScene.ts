@@ -8,7 +8,7 @@ import {BUILDINGS} from '../game/config/buildings';
 import type {GameEvent} from '../game/config/types';
 export interface FarmBridge {simulation:()=>GameSimulation|null;paused:()=>boolean;tick:()=>void;events:(events:GameEvent[])=>void;market:()=>void;well:()=>void;action:()=>void;reduced:()=>boolean;effects:()=>boolean}
 export class FarmScene extends Phaser.Scene {
- private bridge:FarmBridge;private clock=new GameClock();private entities=new Map<string,Phaser.GameObjects.Image>();private labels=new Map<string,Phaser.GameObjects.Text>();private bars!:Phaser.GameObjects.Graphics;private truck!:Phaser.GameObjects.Image;private well!:Phaser.GameObjects.Image;private clouds:Phaser.GameObjects.Image[]=[];private model:GameSimulation|null=null;private ready=false;private yScale=1;private entityScale=1;private layoutHeight=0;private layoutWidth=0;private textScale=1;private backdrop!:Phaser.GameObjects.Image;private barn!:Phaser.GameObjects.Image;private wellLabel!:Phaser.GameObjects.Text;private barnLabel!:Phaser.GameObjects.Text;private trees:Array<{image:Phaser.GameObjects.Image;y:number;scale:number}>=[];
+ private bridge:FarmBridge;private clock=new GameClock();private entities=new Map<string,Phaser.GameObjects.Image>();private labels=new Map<string,Phaser.GameObjects.Text>();private bars!:Phaser.GameObjects.Graphics;private truck!:Phaser.GameObjects.Image;private well!:Phaser.GameObjects.Image;private clouds:Phaser.GameObjects.Image[]=[];private model:GameSimulation|null=null;private ready=false;private yScale=1;private entityScale=1;private layoutHeight=0;private layoutWidth=0;private mobile=false;private truckHome=726;private textScale=1;private backdrop!:Phaser.GameObjects.Image;private barn!:Phaser.GameObjects.Image;private wellLabel!:Phaser.GameObjects.Text;private barnLabel!:Phaser.GameObjects.Text;private trees:Array<{image:Phaser.GameObjects.Image;y:number;scale:number}>=[];
  constructor(bridge:FarmBridge){super('Farm');this.bridge=bridge;}
  create():void {
   this.backdrop=this.add.image(500,325,'farm-open').setDepth(-1000);
@@ -24,10 +24,10 @@ export class FarmScene extends Phaser.Scene {
   this.ready=true;this.resizeLayout();this.game.canvas.dataset.ready='true';
  }
  private resizeLayout():void {
-  const width=this.game.canvas.clientWidth||1000;if(this.layoutHeight===this.scale.height&&this.layoutWidth===width)return;this.layoutHeight=this.scale.height;this.layoutWidth=width;this.textScale=Math.max(1,900/width);this.yScale=this.scale.height/650;this.entityScale=Math.min(1,this.yScale);
+  const width=this.game.canvas.clientWidth||1000;if(this.layoutHeight===this.scale.height&&this.layoutWidth===width)return;this.layoutHeight=this.scale.height;this.layoutWidth=width;this.mobile=matchMedia('(max-width:1000px), (pointer:coarse)').matches;this.truckHome=this.mobile?690:726;this.textScale=Math.max(1,900/width);this.yScale=this.scale.height/650;this.entityScale=Math.min(1,this.yScale);
   this.backdrop.setPosition(500,this.scale.height/2).setDisplaySize(1000,this.scale.height);
-  this.well.setPosition(500,85*this.yScale).setScale(.82*this.entityScale);this.barn.setPosition(499,582*this.yScale).setScale(.85*this.entityScale);this.truck.setY(583*this.yScale).setScale(.88*this.entityScale);
-  this.wellLabel.setY(136*this.yScale).setFontSize(11*this.textScale);this.barnLabel.setY(642*this.yScale).setFontSize(10*this.textScale);for(const label of this.labels.values())label.setFontSize(Number(label.getData('fontSize'))*this.textScale);
+  this.well.setPosition(500,85*this.yScale).setScale(.82*this.entityScale);this.barn.setPosition(499,(this.mobile?570:582)*this.yScale).setScale(.85*this.entityScale);this.truck.setY((this.mobile?570:583)*this.yScale).setScale(.88*this.entityScale);
+  this.wellLabel.setY(136*this.yScale).setFontSize(11*this.textScale);this.barnLabel.setY(642*this.yScale).setFontSize(10*this.textScale).setVisible(!this.mobile);for(const label of this.labels.values())label.setFontSize(Number(label.getData('fontSize'))*this.textScale);
   for(const tree of this.trees)tree.image.setY(tree.y*this.yScale).setScale(tree.scale*this.entityScale);
   this.clouds.forEach((cloud,i)=>cloud.setY((42+i%2*20)*this.yScale));
  }
@@ -73,6 +73,6 @@ export class FarmScene extends Phaser.Scene {
   for(const [key,obj] of this.entities)if(!alive.has(key)){obj.destroy();this.entities.delete(key);}
   for(const [key,label] of this.labels)if(!visibleLabels.has(key))label.setVisible(false);
   bar(500,151,90,s.water/sim.waterCapacity(),0x75a9a8);
-  if(s.truck.remaining>0){const progress=1-s.truck.remaining/s.truck.duration;const x=progress<.2?726+progress*1700:progress>.8?1066-(progress-.8)*1700:1100;this.truck.setX(x).setFlipX(progress>.8);this.label('truck',`MARKET · ${Math.ceil(s.truck.remaining)}s`,720,622,'#546f62',10);}else{this.truck.setX(726).setFlipX(false);this.labels.get('truck')?.setVisible(false);}
+  if(s.truck.remaining>0){const progress=1-s.truck.remaining/s.truck.duration;const x=progress<.2?this.truckHome+progress*1700:progress>.8?this.truckHome+340-(progress-.8)*1700:1100;this.truck.setX(x).setFlipX(progress>.8);this.label('truck',`MARKET · ${Math.ceil(s.truck.remaining)}s`,this.mobile?this.truckHome:720,this.mobile?540:622,'#546f62',10);}else{this.truck.setX(this.truckHome).setFlipX(false);this.labels.get('truck')?.setVisible(false);}
  }
 }

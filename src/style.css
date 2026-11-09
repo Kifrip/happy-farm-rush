@@ -10,44 +10,57 @@
 .language-button{border:1px solid var(--line);background:#f0efdf;border-radius:8px;min-width:36px;min-height:34px;font-size:11px;font-weight:bold;padding:5px;color:var(--ink)}
 .language-options{display:flex;gap:6px}.language-options button{padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:#f0efdf;font-size:11px}.language-options [aria-pressed=true]{background:var(--green);color:#fff9e4}
 .mobile-goals{display:none}.farm-language{font-size:10px}.workshop-menu button{flex-wrap:wrap}.workshop-menu span{font-size:10px}
+.animal-menu-button{display:none}
+.animal-wallet{display:flex;align-items:center;justify-content:center;gap:6px;margin:8px 0!important;color:var(--ink)!important}.animal-wallet svg{width:16px;height:16px;color:var(--gold)}
+.animal-shop .secondary{justify-content:flex-start;text-align:left;gap:10px;min-height:65px;padding:7px 10px}.animal-shop img{width:60px;height:49px}.animal-shop span{flex:1}.animal-shop b{display:block}.animal-shop small{display:block;font-size:9px;line-height:1.5;margin-top:4px;color:#7c8f72}.animal-shop strong{text-align:center}.animal-shop i{font-size:10px;font-style:normal;color:#759060}
 @media(max-width:1000px),(pointer:coarse){
  body.playing{height:100dvh;overflow:hidden;overscroll-behavior:none}
  .playing #app,.playing #view{height:100%;min-height:0;margin:0}
- .playing .masthead,.playing>.footer,.playing #app>.footer{display:none}
- .playing .farm-shell{height:100%;width:100%;max-width:none;margin:0;padding:0;display:grid;grid-template-rows:46px 40px minmax(0,1fr) calc(64px + env(safe-area-inset-bottom));gap:0}
- .playing .farm-heading{grid-row:1;gap:4px;padding:4px max(6px,env(safe-area-inset-left));margin:0;border-bottom:1px solid #e2e6d0;min-width:0;background:#faf7ee}
- .playing .farm-heading>div:first-child{min-width:0;flex:1}.playing .farm-heading .eyebrow{display:none}.playing .farm-heading h2{margin:0;font-size:15px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:-.3px}
- .playing .farm-stats{gap:4px}.playing .farm-stats .stat{min-width:40px;grid-template-columns:14px auto;column-gap:3px}.playing .farm-stats .stat svg{width:14px;height:14px;grid-row:auto}.playing .farm-stats .stat b{font:16px Georgia,serif}.playing .farm-stats .stat small{display:none}
- .playing .farm-stats .icon-btn{height:34px;width:34px;min-width:34px;border-radius:8px}.playing .farm-stats #mute{display:none}.playing .farm-language{height:34px;min-width:30px;width:30px}.playing .mobile-goals{display:inline-grid}
- .playing .farm-layout{display:contents}.playing .farm-sidebar{grid-row:2;padding:3px 5px;display:block;min-height:0;min-width:0;overflow:hidden;background:#f3f3e6}
- .playing .farm-sidebar>.eyebrow,.playing .farm-sidebar>.medal-targets,.playing .farm-tip,.playing .aid-button{display:none}
- .playing .objectives{display:flex;flex-wrap:nowrap;gap:5px;margin:0;height:34px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none}.playing .objectives::-webkit-scrollbar{display:none}
- .playing .objective{min-width:145px;max-width:240px;flex:1 0 145px;min-height:31px;margin:0;padding:3px 5px;grid-template-columns:22px minmax(0,1fr);gap:5px;border:1px solid #dde4ca;border-radius:5px;background:#eff2df}
- .playing .objective-icon,.playing .objective-icon img{width:22px;height:22px}.playing .objective b{font:700 10px/1.3 'Trebuchet MS',Verdana,sans-serif;padding-right:30px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.playing .objective small{display:none}.playing .objective>strong{font-size:10px;top:5px;right:5px}.playing .objective-track{height:3px;margin-top:5px}
- .playing .farm-stage-wrap{grid-row:3;height:100%;width:100%;min-height:0;max-width:none!important;min-width:0;border:0;border-radius:0;box-shadow:none;justify-self:stretch;align-self:stretch;overflow:hidden}
+ .playing .masthead,.playing #app>.footer{display:none}
+ .playing .farm-shell{position:relative;isolation:isolate;height:100%;width:100%;max-width:none;margin:0;padding:0;display:block;--hud-edge:max(12px,env(safe-area-inset-right));--hud-top:clamp(88px,12dvh,136px)}
+ .playing .farm-layout{display:contents}
+ .playing .farm-stage-wrap{position:absolute;inset:0;z-index:0;height:100%;width:100%;min-height:0;max-width:none!important;min-width:0;border:0;border-radius:0;box-shadow:none;overflow:hidden}
  .playing #farm-stage{width:100%;height:100%;aspect-ratio:auto}.playing .stage-caption{display:none}
- .playing .farm-controls{grid-row:4;margin:0;padding:4px max(4px,env(safe-area-inset-right)) calc(4px + env(safe-area-inset-bottom)) max(4px,env(safe-area-inset-left));display:flex;flex-wrap:nowrap;align-items:stretch;gap:3px;border:0;border-top:1px solid #dbe3c8;background:#faf7ee;min-width:0;overflow:hidden}
- .playing .animal-controls{flex:1;min-width:0;margin:0}.playing .animal-controls>small{display:none}.playing .animal-controls>div{display:flex;flex-wrap:nowrap;gap:2px;height:100%;overflow-x:auto;scrollbar-width:none}.playing .animal-buy{flex:1;min-width:37px;max-width:80px;margin:0;padding:1px 3px;gap:0;position:relative;display:flex;flex-direction:column;justify-content:center;min-height:44px}
- .playing .animal-buy>img{height:30px;width:37px}.playing .animal-buy>span{text-align:center}.playing .animal-buy>span b{font-size:0;line-height:0}.playing .animal-buy i{position:absolute;right:2px;top:2px;line-height:12px;font-size:9px;background:#f0f3e4d9;border-radius:4px;padding:0 2px}
- .playing .animal-buy>span>small{font-size:9px;margin:0;justify-content:center;line-height:12px}.playing .animal-buy small svg{height:9px;width:9px}.playing .buy-plus{display:block;position:absolute;left:3px;top:0;font-size:14px;margin:0;color:#658054}
- .playing .well-control,.playing .warehouse-control,.playing .truck-control{flex:0 0 auto;min-width:0;width:53px;margin:0;min-height:44px;padding:3px;display:flex;flex-direction:column;justify-content:center;gap:2px;border-radius:6px;box-shadow:none}
- .playing .warehouse-control{width:58px}.playing .truck-control{width:76px}.playing .farm-controls>button>svg:first-child{height:16px;width:16px}.playing .farm-controls>button>span{text-align:center;max-width:100%}.playing .farm-controls>button>span>b{font-size:10px;line-height:12px;white-space:normal}.playing .farm-controls>button>span>small{font-size:8px;white-space:nowrap;display:block;margin-top:1px;overflow:hidden}.playing .well-control small{display:none!important}.playing .truck-control>svg:last-child{display:none}
- .playing .workshop-strip{display:none}.playing .overlay-backdrop{padding:max(10px,env(safe-area-inset-top)) max(10px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))}
- .playing .dialog{max-height:calc(100dvh - 20px);max-width:calc(100vw - 20px)}
+ .playing .farm-heading{position:absolute;z-index:20;top:max(10px,env(safe-area-inset-top));left:max(12px,env(safe-area-inset-left));right:var(--hud-edge);min-width:0;display:flex;gap:6px;align-items:center;margin:0;padding:0;background:none;border:0;pointer-events:none}
+ .playing .farm-heading>div:first-child{flex:1;min-width:0;max-width:240px}.playing .farm-heading .eyebrow{display:none}
+ .playing .farm-heading h2{font-size:15px;line-height:20px;letter-spacing:-.2px;margin:0;padding:6px 10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ .playing .farm-heading>div:first-child,.playing .farm-stats .stat{background:#fffaf0dc;border:1px solid #e1e7cb;border-radius:11px;box-shadow:0 3px 12px #3b5b4210;backdrop-filter:blur(6px)}
+ .playing .farm-stats{display:contents}.playing .farm-stats .stat{min-width:46px;grid-template-columns:14px auto;column-gap:4px;padding:8px;align-items:center}.playing .farm-stats .stat svg{width:14px;height:14px;grid-row:auto}.playing .farm-stats .stat b{font:16px Georgia,serif}.playing .farm-stats .stat small{display:none}
+ .playing .farm-stats>button{position:absolute;pointer-events:auto;width:44px;height:44px;min-width:44px;padding:0;border:1px solid #dbe4c7;border-radius:13px;background:#fffaf0e8;box-shadow:0 3px 12px #3b5b4224;backdrop-filter:blur(8px)}
+ .playing .farm-stats>button svg{width:19px;height:19px}.playing .farm-stats #mute{display:none}.playing .mobile-goals{display:inline-grid}
+ .playing .farm-stats>[data-action=goals]{right:50px;top:var(--hud-top)}
+ .playing .farm-stats>[data-action=fullscreen]{right:0;top:var(--hud-top)}
+ .playing .farm-stats>.farm-language{right:50px;top:calc(var(--hud-top) + 50px);font-size:12px}
+ .playing .farm-stats>[data-action=pause]{right:0;top:calc(var(--hud-top) + 50px)}
+ .playing .farm-sidebar{position:absolute;z-index:20;left:max(12px,env(safe-area-inset-left));top:calc(max(10px,env(safe-area-inset-top)) + 42px);width:calc(100% - 24px);max-width:340px;margin:0;padding:0;min-width:0;display:block;background:none;border:0;pointer-events:none}
+ .playing .farm-sidebar>.eyebrow,.playing .farm-sidebar>.medal-targets,.playing .farm-tip,.playing .aid-button{display:none}
+ .playing .objectives{display:flex;flex-direction:row;flex-wrap:nowrap;gap:6px;margin:0;height:30px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;pointer-events:auto}.playing .objectives::-webkit-scrollbar{display:none}
+ .playing .objective{min-width:185px;max-width:240px;flex:1 0 185px;min-height:29px;margin:0;padding:3px 6px;grid-template-columns:20px minmax(0,1fr);gap:5px;border:1px solid #dce4c6;border-radius:9px;background:#fffaf0dc;box-shadow:0 2px 8px #355a3b10;backdrop-filter:blur(8px)}
+ .playing .objective-icon,.playing .objective-icon img{width:20px;height:20px}.playing .objective b{font:700 10px/1.3 'Trebuchet MS',Verdana,sans-serif;padding-right:30px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.playing .objective small{display:none}.playing .objective>strong{font-size:10px;top:4px;right:6px}.playing .objective-track{height:3px;margin-top:4px}
+ .playing .farm-controls{position:absolute;z-index:20;left:max(12px,env(safe-area-inset-left));right:var(--hud-edge);bottom:max(14px,env(safe-area-inset-bottom));height:60px;display:flex;flex-wrap:nowrap;align-items:stretch;gap:6px;min-width:0;margin:0;padding:0;background:none;border:0;overflow:visible;pointer-events:none}
+ .playing .farm-controls button{pointer-events:auto;background:#fffaf0e6;border:1px solid #d8e2c1;border-radius:13px;box-shadow:0 4px 14px #3b5b4226;backdrop-filter:blur(8px)}
+ .playing .animal-controls{flex:1;min-width:0;margin:0;pointer-events:none}.playing .animal-controls>small{display:none}.playing .animal-controls>div{display:flex;flex-wrap:nowrap;gap:6px;height:100%;overflow:visible;pointer-events:none}
+ .playing .animal-buy{flex:0 0 64px;width:64px;min-width:64px;max-width:64px;height:100%;margin:0;padding:2px 5px;gap:0;position:relative;display:flex;flex-direction:column;justify-content:center}
+ .playing .animal-buy>img{height:33px;width:40px}.playing .animal-buy>span{text-align:center}.playing .animal-buy>span b{font-size:0;line-height:0}.playing .animal-buy i{position:absolute;right:4px;top:3px;line-height:12px;font-size:9px;background:#f0f3e4d9;border-radius:4px;padding:0 2px}
+ .playing .animal-buy>span>small{font-size:9px;margin:0;justify-content:center;line-height:12px}.playing .animal-buy small svg{height:10px;width:10px}.playing .buy-plus{display:block;position:absolute;left:5px;top:1px;font-size:15px;margin:0;color:#658054}
+ .playing .multiple-animals>div{display:none}.playing .multiple-animals>.animal-menu-button{display:flex;position:relative;flex-direction:column;align-items:center;justify-content:center;gap:0;width:72px;height:100%;padding:2px 5px}
+ .playing .animal-menu-button>img{height:28px;width:34px}.playing .animal-menu-button b{font-size:9px}.playing .animal-menu-button small{position:absolute;right:5px;top:3px;font-size:9px;background:#f0f3e4e8;border-radius:4px;padding:1px 3px}.playing .animal-menu-button strong{position:absolute;left:5px;top:1px;font-size:15px;color:#658054}
+ .playing .well-control,.playing .warehouse-control,.playing .truck-control{flex:0 0 auto;min-width:0;width:53px;margin:0;min-height:44px;padding:4px;display:flex;flex-direction:column;justify-content:center;gap:2px;box-shadow:0 4px 14px #3b5b4226}
+ .playing .warehouse-control{width:61px}.playing .truck-control{width:76px;background:#355c47f0!important;border-color:#355c47!important;color:#fff8df}
+ .playing .farm-controls>button>svg:first-child{height:17px;width:17px}.playing .farm-controls>button>span{text-align:center;max-width:100%}.playing .farm-controls>button>span>b{font-size:10px;line-height:12px;white-space:normal}.playing .farm-controls>button>span>small{font-size:8px;white-space:nowrap;display:block;margin-top:1px;overflow:hidden}.playing .well-control small{display:none!important}.playing .truck-control>svg:last-child{display:none}
+ .playing .workshop-strip{display:none}.playing .overlay-backdrop{padding:max(10px,env(safe-area-inset-top)) max(10px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))}.playing .dialog{max-height:calc(100dvh - 20px);max-width:calc(100vw - 20px)}
+ .playing #toast{bottom:90px}
 }
-@media(max-width:360px){.playing .farm-stats{gap:2px}.playing .farm-heading h2{font-size:13px}.playing .farm-stats .icon-btn{width:30px;min-width:30px;height:34px}.playing .farm-language{width:27px;min-width:27px}.playing .well-control{width:43px}.playing .warehouse-control{width:48px}.playing .truck-control{width:60px}.playing .animal-buy{min-width:31px}.playing .animal-buy>img{width:31px}.playing .farm-controls>button>span>b{font-size:9px}}
 @media(max-width:400px){.masthead{padding:0 12px;gap:8px}.brand{font-size:18px;gap:7px}.brand-mark{height:29px;width:29px}.masthead nav{gap:7px}.nav-btn svg{width:18px;height:18px}.masthead .language-button{min-width:30px;width:30px;font-size:10px}.stars-badge{padding:7px}.brand-rush{letter-spacing:5px}}
-@media(max-height:550px) and (max-width:1000px), (max-height:550px) and (pointer:coarse){
- .playing .farm-shell{grid-template-rows:40px 32px minmax(0,1fr) calc(52px + env(safe-area-inset-bottom))}
- .playing .farm-heading{padding-top:2px;padding-bottom:2px}.playing .farm-sidebar{padding-top:3px;padding-bottom:3px}.playing .objectives{height:26px}.playing .objective{min-height:26px;padding-top:2px;padding-bottom:2px;grid-template-columns:19px minmax(0,1fr)}.playing .objective-icon,.playing .objective-icon img{width:19px;height:19px}.playing .objective-track{margin-top:3px;height:2px}.playing .objective>strong{top:4px}
- .playing .animal-buy>img{height:23px;width:30px}.playing .animal-buy{min-height:40px}.playing .farm-controls>button{min-height:40px}.playing .farm-controls>button>svg:first-child{width:13px;height:13px}.playing .farm-controls>button>span>small{font-size:7px}
+@media(max-width:360px){.playing .farm-heading h2{font-size:13px;padding:7px}.playing .farm-stats .stat{min-width:40px;padding:8px 5px}.playing .animal-buy{width:56px;min-width:56px;max-width:56px}.playing .well-control{width:47px}.playing .warehouse-control{width:54px}.playing .truck-control{width:66px}.playing .farm-controls{gap:5px}}
+@media(orientation:landscape) and (max-width:1000px),(orientation:landscape) and (pointer:coarse){
+ .playing .farm-shell{--hud-top:clamp(12px,10dvh,44px)}
+ .playing .farm-heading{right:auto;width:calc(50% - 60px)}.playing .farm-heading h2{font-size:14px}
+ .playing .farm-stats>button{position:fixed;right:var(--hud-edge)!important}
+ .playing .farm-stats>[data-action=goals]{top:var(--hud-top)}.playing .farm-stats>[data-action=fullscreen]{top:calc(var(--hud-top) + 48px)}.playing .farm-stats>.farm-language{top:calc(var(--hud-top) + 96px)}.playing .farm-stats>[data-action=pause]{top:calc(var(--hud-top) + 144px)}
+ .playing .farm-sidebar{width:calc(50% - 65px)}
+ .playing .farm-controls{height:48px;bottom:max(12px,env(safe-area-inset-bottom))}.playing .animal-buy>img{height:25px;width:33px}.playing .animal-menu-button>img{height:22px}.playing .farm-controls>button>svg:first-child{height:14px;width:14px}.playing .farm-controls>button>span>small{font-size:7px}
+ .playing #toast{bottom:72px}
 }
-/* Advanced portrait days keep every animal purchase reachable without a horizontal swipe. */
-@media(max-width:600px) and (orientation:portrait){
- .playing .farm-shell:has(.animal-buy:nth-child(4)){grid-template-rows:46px 40px minmax(0,1fr) calc(108px + env(safe-area-inset-bottom))}
- .playing .farm-controls:has(.animal-buy:nth-child(4)){flex-wrap:wrap;row-gap:4px}
- .playing .farm-controls:has(.animal-buy:nth-child(4)) .animal-controls{flex:1 1 100%;height:44px}
- .playing .farm-controls:has(.animal-buy:nth-child(4)) .animal-controls>div{overflow:visible}
- .playing .farm-controls:has(.animal-buy:nth-child(4)) .animal-buy{min-width:0;max-width:none;flex:1}
- .playing .farm-controls:has(.animal-buy:nth-child(4))>button{flex:1;width:auto;height:48px;flex-direction:row;gap:8px}
-}
+@media(orientation:landscape) and (max-height:350px){.playing .farm-controls{height:44px;bottom:max(8px,env(safe-area-inset-bottom))}}
+@media(orientation:landscape) and (max-height:300px){.playing .farm-controls{height:44px;bottom:max(4px,env(safe-area-inset-bottom))}}

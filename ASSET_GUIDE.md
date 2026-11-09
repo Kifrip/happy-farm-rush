@@ -38,3 +38,5 @@ Keep feet and shadows near the same baseline so depth sorting remains accurate. 
 ## Adaptive farm presentation
 
 The immersive phone layout resizes the presentation canvas to its allocated viewport. Entity positions are projected vertically from the unchanged 1000 × 650 simulation world and taps use the inverse projection. The ground stretches to fill the available space, while individual animals, products and buildings retain their proportions. Trees now render independently from the ground so tall portrait viewports do not stretch the tree illustrations. Font sizes account for the canvas's displayed width to keep Cyrillic world labels readable.
+
+The phone HUD now overlays the canvas rather than taking rows from it. Static barn/truck presentation anchors leave the bottom action dock clear; simulation entities and processing pickup points retain their original coordinates. The right controls use a two-column cluster in portrait and one column along the outer margin in landscape, away from factory centers.
