@@ -36,7 +36,7 @@ const patterns:Array<[RegExp,(m:RegExpMatchArray)=>string]>=[
  [/^Workshop upgrade costs (\d+) coins\.$/,m=>`Улучшение стоит ${m[1]} монет.`],[/^(.+) upgraded to level (\d+)$/,m=>`${t(m[1])}: уровень ${m[2]}`],
  [/^Off to market · (\d+) coins on return$/,m=>`На рынок! После возвращения: +${m[1]} монет`],[/^Market delivery · \+(\d+) coins$/,m=>`Доставка завершена · +${m[1]} монет`],
  [/^(.+) ready!$/,m=>`${t(m[1])}: готово!`],[/^A hungry (.+) left\. Keep grass growing!$/,m=>`Животное ушло из-за голода. Посадите траву! (${productName(m[1])})`],
- [/^COLLECT · (\d+)s$/,m=>`ЗАБРАТЬ · ${m[1]} с`],[/^! BEAR · (\d+)s$/,m=>`! МЕДВЕДЬ · ${m[1]} с`],[/^(\d+)s · (\d+) crafting$/,m=>`${m[1]} с · в работе: ${m[2]}`],[/^MARKET · (\d+)s$/,m=>`РЫНОК · ${m[1]} с`],
+ [/^COLLECT · (\d+)s$/,m=>`ЗАБРАТЬ · ${m[1]} с`],[/^! BEAR · (\d+)s$/,m=>`! МЕДВЕДЬ · ${m[1]} с`],[/^(\d+)s · (\d+) crafting$/,m=>`${m[1]} с · в работе: ${m[2]}`],[/^(\d+)s · ×(\d+)$/,m=>`${m[1]} с · ×${m[2]}`],[/^MARKET · (\d+)s$/,m=>`РЫНОК · ${m[1]} с`],
  [/^Buy (.+)$/,m=>`Купить: ${t(m[1])}`],
 ];
 export function t(source:string):string {

@@ -1,3 +1,4 @@
+import {fitRoadsideSprite,type ScreenRect} from '../ui/FarmLayout';
 import {t} from '../i18n';
 import Phaser from 'phaser';
 import type {GameSimulation} from '../game/engine/GameSimulation';
@@ -6,9 +7,9 @@ import {ECONOMY as E} from '../game/config/economy';
 import {ANIMALS} from '../game/config/animals';
 import {BUILDINGS} from '../game/config/buildings';
 import type {GameEvent} from '../game/config/types';
-export interface FarmBridge {simulation:()=>GameSimulation|null;paused:()=>boolean;tick:()=>void;events:(events:GameEvent[])=>void;market:()=>void;well:()=>void;action:()=>void;reduced:()=>boolean;effects:()=>boolean}
+export interface FarmBridge {simulation:()=>GameSimulation|null;paused:()=>boolean;tick:()=>void;events:(events:GameEvent[])=>void;market:()=>void;well:()=>void;action:()=>void;reduced:()=>boolean;effects:()=>boolean;hud:()=>ScreenRect[]}
 export class FarmScene extends Phaser.Scene {
- private bridge:FarmBridge;private clock=new GameClock();private entities=new Map<string,Phaser.GameObjects.Image>();private labels=new Map<string,Phaser.GameObjects.Text>();private bars!:Phaser.GameObjects.Graphics;private truck!:Phaser.GameObjects.Image;private well!:Phaser.GameObjects.Image;private clouds:Phaser.GameObjects.Image[]=[];private model:GameSimulation|null=null;private ready=false;private yScale=1;private entityScale=1;private layoutHeight=0;private layoutWidth=0;private mobile=false;private truckHome=726;private textScale=1;private backdrop!:Phaser.GameObjects.Image;private barn!:Phaser.GameObjects.Image;private wellLabel!:Phaser.GameObjects.Text;private barnLabel!:Phaser.GameObjects.Text;private trees:Array<{image:Phaser.GameObjects.Image;y:number;scale:number}>=[];
+ private bridge:FarmBridge;private clock=new GameClock();private entities=new Map<string,Phaser.GameObjects.Image>();private labels=new Map<string,Phaser.GameObjects.Text>();private bars!:Phaser.GameObjects.Graphics;private truck!:Phaser.GameObjects.Image;private well!:Phaser.GameObjects.Image;private clouds:Phaser.GameObjects.Image[]=[];private model:GameSimulation|null=null;private ready=false;private yScale=1;private entityScale=1;private layoutHeight=0;private layoutWidth=0;private mobile=false;private truckHome=726;private lastGeometry=0;private textScale=1;private backdrop!:Phaser.GameObjects.Image;private barn!:Phaser.GameObjects.Image;private wellLabel!:Phaser.GameObjects.Text;private barnLabel!:Phaser.GameObjects.Text;private trees:Array<{image:Phaser.GameObjects.Image;y:number;scale:number}>=[];
  constructor(bridge:FarmBridge){super('Farm');this.bridge=bridge;}
  create():void {
   this.backdrop=this.add.image(500,325,'farm-open').setDepth(-1000);
@@ -24,12 +25,22 @@ export class FarmScene extends Phaser.Scene {
   this.ready=true;this.resizeLayout();this.game.canvas.dataset.ready='true';
  }
  private resizeLayout():void {
-  const width=this.game.canvas.clientWidth||1000;if(this.layoutHeight===this.scale.height&&this.layoutWidth===width)return;this.layoutHeight=this.scale.height;this.layoutWidth=width;this.mobile=matchMedia('(max-width:1000px), (pointer:coarse)').matches;this.truckHome=this.mobile?690:726;this.textScale=Math.max(1,900/width);this.yScale=this.scale.height/650;this.entityScale=Math.min(1,this.yScale);
+  const width=this.game.canvas.clientWidth||1000;if(this.layoutHeight===this.scale.height&&this.layoutWidth===width)return;this.layoutHeight=this.scale.height;this.layoutWidth=width;this.mobile=matchMedia('(max-width:1000px), (pointer:coarse)').matches;this.truckHome=this.mobile?(width>this.game.canvas.clientHeight?630:690):726;this.textScale=Math.max(1,900/width);this.yScale=this.scale.height/650;this.entityScale=Math.min(1,this.yScale);
   this.backdrop.setPosition(500,this.scale.height/2).setDisplaySize(1000,this.scale.height);
   this.well.setPosition(500,85*this.yScale).setScale(.82*this.entityScale);this.barn.setPosition(499,(this.mobile?570:582)*this.yScale).setScale(.85*this.entityScale);this.truck.setY((this.mobile?570:583)*this.yScale).setScale(.88*this.entityScale);
   this.wellLabel.setY(136*this.yScale).setFontSize(11*this.textScale);this.barnLabel.setY(642*this.yScale).setFontSize(10*this.textScale).setVisible(!this.mobile);for(const label of this.labels.values())label.setFontSize(Number(label.getData('fontSize'))*this.textScale);
   for(const tree of this.trees)tree.image.setY(tree.y*this.yScale).setScale(tree.scale*this.entityScale);
   this.clouds.forEach((cloud,i)=>cloud.setY((42+i%2*20)*this.yScale));
+  if(this.mobile){const hud=this.bridge.hud(),pixelScale=width/1000,height=this.game.canvas.clientHeight;for(const sprite of [this.barn,this.truck]){const bounds=sprite.getBounds();const rect=fitRoadsideSprite({x:bounds.x*pixelScale,y:bounds.y*pixelScale,width:bounds.width*pixelScale,height:bounds.height*pixelScale},hud,505/650*height,height);const scale=rect.width/(sprite.width*pixelScale);sprite.setY((rect.y+rect.height/2)/pixelScale).setScale(scale);}}
+ }
+ private publishStructureBounds():void {
+  const now=performance.now();if(now-this.lastGeometry<200)return;this.lastGeometry=now;
+  const width=this.game.canvas.clientWidth,height=this.game.canvas.clientHeight,result:Array<ScreenRect&{id:string}>=[];
+  const add=(id:string,object:Phaser.GameObjects.Image|Phaser.GameObjects.Text|undefined)=>{if(!object?.visible)return;const r=object.getBounds();result.push({id,x:r.x*width/this.scale.width,y:r.y*height/this.scale.height,width:r.width*width/this.scale.width,height:r.height*height/this.scale.height});};
+  add('well',this.well);add('well-label',this.wellLabel);add('warehouse',this.barn);if(!this.bridge.simulation()?.s.truck.remaining)add('truck',this.truck);
+  for(const [key,image] of this.entities)if(key.startsWith('m'))add(key,image);
+  for(const [key,label] of this.labels)if(key.startsWith('ml'))add(key,label);
+  this.game.canvas.dataset.structureBounds=JSON.stringify(result);
  }
  private image(key:string,texture:string,x:number,y:number):Phaser.GameObjects.Image {
   y*=this.yScale;let image=this.entities.get(key);if(!image){image=this.add.image(x,y,texture);this.entities.set(key,image);}else{image.setTexture(texture);image.setPosition(x,y);}return image;
@@ -42,7 +53,7 @@ export class FarmScene extends Phaser.Scene {
   const e={...event,x:event.x,y:event.y*this.yScale,text:t(event.text)};
   if(e.kind==='plant'&&!this.bridge.reduced()){for(let i=0;i<4;i++){const dust=this.add.circle(e.x+(i-1.5)*6,e.y+6,2+i%2,0xd8c28a,.75).setDepth(e.y+2);this.tweens.add({targets:dust,x:dust.x+(i-1.5)*10,y:e.y-8-i*3,alpha:0,scale:.3,duration:650,onComplete:()=>dust.destroy()});}}
   if(e.kind==='collect'&&e.asset&&!this.bridge.reduced()){
-   const p=this.add.image(e.x,e.y,`product-${e.asset}`).setDepth(3000);this.tweens.add({targets:p,x:500,y:565*this.yScale,scale:.3,alpha:0,duration:520,ease:'Cubic.In',onComplete:()=>p.destroy()});
+   const p=this.add.image(e.x,e.y,`product-${e.asset}`).setDepth(3000);this.tweens.add({targets:p,x:this.barn.x,y:this.barn.y,scale:.3,alpha:0,duration:520,ease:'Cubic.In',onComplete:()=>p.destroy()});
   }
   const label=this.add.text(e.x,e.y-35,e.kind==='collect'?e.text:e.kind==='plant'?t('+ grass'):e.kind==='product'?t('Ready!'):e.text,{fontFamily:'Verdana',fontSize:`${12*this.textScale}px`,fontStyle:'bold',color:e.kind==='error'?'#b34839':'#3e6247',backgroundColor:'#fff9e4',padding:{x:7,y:5}}).setOrigin(.5).setDepth(3001);
   this.tweens.add({targets:label,y:e.y-65,alpha:0,duration:this.bridge.reduced()?500:1300,ease:'Sine.Out',onComplete:()=>label.destroy()});
@@ -67,12 +78,13 @@ export class FarmScene extends Phaser.Scene {
    if(b.caged){const ck=`c${b.id}`;alive.add(ck);this.image(ck,'cage',b.x,b.y-20).setScale(.95*this.entityScale).setDepth(b.y+1);}
   }
   for(const m of s.machines){const b=BUILDINGS[m.kind],key=`m${m.kind}`;alive.add(key);const sprite=this.image(key,`building-${m.kind}-${m.level}`,b.x,b.y-25);sprite.setDepth(b.y).setScale(.94*this.entityScale).setAngle(motion&&m.remaining>0?Math.sin(t*7)*.7:0);if(!sprite.input)sprite.setInteractive({useHandCursor:true}).on('pointerdown',()=>{this.bridge.action();if(!this.bridge.paused())sim.process(m.kind);});
-   const k=`ml${m.kind}`;visibleLabels.add(k);this.label(k,m.remaining>0?`${Math.ceil(m.remaining)}s · ${m.batch} crafting`:b.short,b.x,b.y+45,'#4b5f49',10);
+   const k=`ml${m.kind}`;visibleLabels.add(k);this.label(k,m.remaining>0?(this.mobile?`${Math.ceil(m.remaining)}s · ×${m.batch}`:`${Math.ceil(m.remaining)}s · ${m.batch} crafting`):b.short,b.x,b.y+45,'#4b5f49',10);
    if(m.remaining>0){const gx=b.x-47,gy=(b.y+4)*this.yScale;this.bars.fillStyle(0x728c7c).beginPath();for(let n=0;n<32;n++){const angle=(motion?t*2:0)+n*Math.PI/16,r=n%4<2?11:8;const x=gx+Math.cos(angle)*r,y=gy+Math.sin(angle)*r;if(n===0)this.bars.moveTo(x,y);else this.bars.lineTo(x,y);}this.bars.closePath().fillPath();this.bars.fillStyle(0xe8dab1).fillCircle(gx,gy,3);bar(b.x,b.y+65,85,1-m.remaining/m.duration,0xdea84d);if(motion&&this.bridge.effects()){const smokeKey=`sm${m.kind}`;visibleLabels.add(smokeKey);this.label(smokeKey,'· ·',b.x+30+Math.sin(t)*5,b.y-95-(t*9%20),'#a7aaa0',15);}}
   }
   for(const [key,obj] of this.entities)if(!alive.has(key)){obj.destroy();this.entities.delete(key);}
   for(const [key,label] of this.labels)if(!visibleLabels.has(key))label.setVisible(false);
   bar(500,151,90,s.water/sim.waterCapacity(),0x75a9a8);
   if(s.truck.remaining>0){const progress=1-s.truck.remaining/s.truck.duration;const x=progress<.2?this.truckHome+progress*1700:progress>.8?this.truckHome+340-(progress-.8)*1700:1100;this.truck.setX(x).setFlipX(progress>.8);this.label('truck',`MARKET · ${Math.ceil(s.truck.remaining)}s`,this.mobile?this.truckHome:720,this.mobile?540:622,'#546f62',10);}else{this.truck.setX(this.truckHome).setFlipX(false);this.labels.get('truck')?.setVisible(false);}
+  this.publishStructureBounds();
  }
 }
