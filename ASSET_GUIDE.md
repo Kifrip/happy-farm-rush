@@ -25,7 +25,7 @@ The loader creates base64 SVG data URLs; no runtime fetches to asset services ar
 
 ## Audio
 
-`src/ui/Audio.ts` synthesizes short pitch envelopes with Web Audio. Planting, refills, production, collection, workshop starts, truck trips, bear warnings, cage hits, purchases, errors and results have distinct pitches. Background music uses the user-supplied `public/audio/breakfast-in-the-orchard.mp3` (Breakfast in the Orchard), with native looping and a separate volume slider. It pauses with the farm or hidden tab and resumes at the same position. The audio context is created/resumed only after interaction; sound effects use no samples. The music recording was supplied by the repository owner for inclusion in this game.
+`src/ui/Audio.ts` synthesizes short pitch envelopes with Web Audio. Planting, refills, production, collection, workshop starts, truck trips, bear warnings, cage hits, purchases, errors and results have distinct pitches. Background music uses the user-supplied `public/audio/breakfast-in-the-orchard.mp3` (Breakfast in the Orchard), with native looping and a separate volume slider. It continues through game menus and pauses in a hidden browser tab and resumes at the same position. The audio context is created/resumed only after interaction; sound effects use no samples. The music recording was supplied by the repository owner for inclusion in this game.
 
 ## Ownership and licensing
 

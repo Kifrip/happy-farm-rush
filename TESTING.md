@@ -63,3 +63,7 @@ Screenshots: `screenshots/uncovered-buildings-*.png` and the user-screenshot asp
 ## Supplied background music update
 
 After replacing the oscillator with the owner-supplied MP3, `npm test` passed all 147 tests and `npm run build` succeeded. Three targeted Chromium cases (`music.spec.ts`) passed for desktop and both phone orientations: no audio element before interaction, actual MP3 decoding and advancing playback time, loop enabled, saved default music volume, pause/resume at the current position, hidden-tab pause and no runtime errors. The previous 15 browser cases were not rerun for this audio-only change. The supplied recording is preserved; these checks do not establish a musically seamless loop or physical-device sound quality.
+
+## Continuous menu music
+
+Music now continues across game dialogs and navigation, including pause and market panels. The simulation still pauses normally. The three updated music browser cases passed on desktop and both mobile orientations, verifying advancing playback through pause/resume and market menus plus hidden-tab audio suspension. All 147 unit tests and the strict production build also passed. Music remains gated by user interaction, mute, volume and browser-tab visibility.

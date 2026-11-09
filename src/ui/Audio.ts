@@ -1,6 +1,6 @@
 import type {EventKind,Settings} from '../game/config/types';
 export class AudioSystem {
- private context:AudioContext|null=null;private music:HTMLAudioElement|null=null;private unlocked=false;private musicPlaying=false;
+ private context:AudioContext|null=null;private music:HTMLAudioElement|null=null;private unlocked=false;private musicPlaying=true;
  constructor(private settings:()=>Settings){}
  unlock():void {this.unlocked=true;this.musicUpdate(this.musicPlaying);try{this.context??=new AudioContext();void this.context.resume();}catch{/* Browser without Web Audio: gameplay remains available. */}}
  play(kind:EventKind|'click'):void {
