@@ -25,9 +25,9 @@ Browser tests default to a running Vite server on port 5173. To test the product
 
 ## Deployment
 
-GitHub Pages URL: **https://kifrip.github.io/happy-farm-rush/**
+Published on Cloudflare Workers: **https://pg-happy-farm-rush.register-c02.workers.dev/**
 
-The repository includes `.github/workflows/pages.yml`: a push to `main` installs locked dependencies, runs unit tests and the strict production build, uploads `dist/`, and deploys through GitHub Pages. Repository Settings → Pages must use **GitHub Actions**. All asset paths are relative, so the site supports the repository subpath. Workflow deployment status is the source of truth for whether a release is live.
+`wrangler.jsonc` serves the Vite build (`dist/`) as static assets from the Worker `pg-happy-farm-rush`. Cloudflare Workers Builds runs `npm test && npm run build` and then `npx wrangler@4 deploy` on every push to `main`; if the tests or the build fail, nothing is deployed. `.github/workflows/ci.yml` runs the same checks on GitHub (it does not publish). GitHub Pages is no longer used.
 
 For another static host, upload `dist/`. There is no backend and no rewrite configuration is required.
 

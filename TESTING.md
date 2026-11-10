@@ -31,6 +31,8 @@ Screenshots of the map, farm, completion, upgrade shop, final-day workshops and 
 
 ## Deployment verification
 
+Since 2026-11-10 the game is published on Cloudflare Workers at https://pg-happy-farm-rush.register-c02.workers.dev/ (Workers Builds runs the unit suite and production build before each deploy). The GitHub Pages notes below are historical.
+
 The GitHub Actions Pages workflow runs locked dependency installation, the complete unit/campaign suite, the strict production build, artifact upload and Pages deployment. A successful deployment was verified at `https://kifrip.github.io/happy-farm-rush/` with an HTTP 200 response. Consult the repository's latest Actions run for the exact released commit.
 
 ## Remaining limitations
