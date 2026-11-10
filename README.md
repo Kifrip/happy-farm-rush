@@ -1,3 +1,5 @@
+> Publishing now uses [the organization GitHub Actions pipeline](docs/platform-publishing.md). This supersedes older deployment notes below.
+
 # Happy Farm Rush
 
 An original, self-contained 2D farm time-management game inspired by the gameplay of classic Farm Frenzy. Twenty individual days take a small goose pasture through three production chains, market deliveries, bears, and a persistent campaign. No accounts, server, ads, paid services, or runtime network dependencies.

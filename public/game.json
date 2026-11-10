@@ -1,0 +1,27 @@
+{
+  "slug": "happy-farm-rush",
+  "title": "Happy Farm Rush",
+  "shortDescription": "Grow grass, gather goods, and keep the farm in one piece.",
+  "description": "Keep a busy farm running through twenty campaign days. Feed geese, collect produce, run workshops, and send goods to market. Keep an eye out for bears. They were not invited.",
+  "coverAlt": "Happy Farm Rush gameplay showing a green pasture, animals, workshops, and a delivery truck",
+  "primaryCategory": "Time Management",
+  "categories": [
+    "Time Management",
+    "Simulation",
+    "Casual"
+  ],
+  "controls": [
+    "Tap empty pasture to grow grass. Tap products to collect them and workshops to start production.",
+    "Tap the warehouse to choose a shipment. Tap bears repeatedly to cage them, then collect the cage.",
+    "Space or Escape pauses. The in-game handbook explains the production chains and campaign goals."
+  ],
+  "languages": "English / Russian — opens in English",
+  "saveNote": "Campaign progress saves locally every five seconds and on pause. Hidden tabs pause the farm; there is no offline farming. Settings offers save export and import.",
+  "accent": "coral",
+  "schemaVersion": 1,
+  "status": "published",
+  "dimension": "2D",
+  "featured": false,
+  "showSource": false,
+  "startQuery": "?lang=en"
+}
